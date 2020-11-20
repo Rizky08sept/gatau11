@@ -789,7 +789,30 @@ const buffer = fs.readFileSync(filepath)
 
 
 }
+   if (text.includes("!quotes"))
+   {
+      var url = 'https://jagokata.com/kata-bijak/acak.html'
+      axios.get(url)
+         .then((result) =>
+         {
+            let $ = cheerio.load(result.data);
+            var author = $('a[class="auteurfbnaam"]').contents().first().text();
+            var kata = $('q[class="fbquote"]').contents().first().text();
 
+            conn.sendMessage(
+               id,
+               `
+      Quotes untuk 
+*${id.split("@s.whatsapp.net")[0]}*
+     _${kata}_
+        
+    
+	*~${author}*
+         `, MessageType.text
+            );
+
+         });
+   }
 
 
 
