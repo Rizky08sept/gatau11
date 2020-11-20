@@ -813,6 +813,88 @@ const buffer = fs.readFileSync(filepath)
 
          });
    }
+   else if (text.includes("!nama ")) 
+  {
+    const cheerio = require('cheerio');
+    const request = require('request');
+    var nama = text.split("!nama ")[1];
+    var req = nama.replace(/ /g,"+");
+    request.get({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url:     'http://www.primbon.com/arti_nama.php?nama1='+ req +'&proses=+Submit%21+',
+      },function(error, response, body){
+          let $ = cheerio.load(body);
+          var y = $.html().split('arti:')[1];
+          var t = y.split('method="get">')[1];
+          var f = y.replace(t ," ");
+          var x = f.replace(/<br\s*[\/]?>/gi, "\n");
+          var h  = x.replace(/<[^>]*>?/gm, '');
+      console.log(""+ h);
+      conn.sendMessage(id,
+            `
+      Halo *${id.split("@s.whatsapp.net")[0]}*
+      Arti dari namamu adalah
+  ***********************************
+         Nama _*${nama}*_ ${h}
+  ***********************************
+`,
+ MessageType.text);
+  });
+  }
+  else if (text.includes("!pasangan ")) {
+    const request = require('request');
+    var gh = text.split("!pasangan ")[1];
+    var namamu = gh.split("&")[0];
+    var pasangan = gh.split("&")[1];
+    request.get({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url:     'http://www.primbon.com/kecocokan_nama_pasangan.php?nama1='+ namamu +'&nama2='+ pasangan +'&proses=+Submit%21+',
+
+    },function(error, response, body){
+        let $ = cheerio.load(body);
+      var y = $.html().split('<b>KECOCOKAN JODOH BERDASARKAN NAMA PASANGAN</b><br><br>')[1];
+        var t = y.split('.<br><br>')[1];
+        var f = y.replace(t ," ");
+        var x = f.replace(/<br\s*[\/]?>/gi, "\n");
+        var h  = x.replace(/<[^>]*>?/gm, '');
+        var d = h.replace("&amp;", '&')
+      console.log(""+ d);
+      conn.sendMessage(id, `
+************************************
+ *Kecocokan berdasarkan nama*
+ ${d}
+************************************
+    `, MessageType.text);
+  });
+  }
+   if (text.includes("!pict cewek"))
+   {
+    var items = ["ullzang girl", "cewe cantik", "hijab cantik", "korean girl", "remaja cantik", "cewek korea", "cewek jepang"];
+    var cewe = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
+    
+    axios.get(url)
+      .then((result) => {
+        var b = JSON.parse(JSON.stringify(result.data));
+        var cewek =  b[Math.floor(Math.random() * b.length)];
+        imageToBase64(cewek) // Path to the image
+        .then(
+            (response) => {
+	var buf = Buffer.from(response, 'base64'); // Ta-da	
+              conn.sendMessage(
+            id,
+              buf,MessageType.image)
+       
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error); // Logs an error if there was one
+            }
+        )
+    
+    });
+    }
 
 
 
