@@ -895,6 +895,47 @@ const buffer = fs.readFileSync(filepath)
     
     });
     }
+ else if (text.includes("!ttsid")) {
+  var teks = text.split("!ttsid ")[1];
+  var path = require('path');
+  var text1 = teks.slice(6);
+  text1 = suara;
+  var suara = text.replace(/#ttsid/g, text1);
+  var filepath = 'mp3/bacot.wav';
+  
+  
+/*
+ * save audio file
+ */
+
+gtts.save(filepath, suara, function() {
+  console.log(`${filepath} MP3 SAVED!`)
+});
+await new Promise(resolve => setTimeout(resolve, 500));
+
+	if(suara.length > 200){ // check longness of text, because otherways google translate will give me a empty file
+  conn.sendMessage("Text kepanjangan bro!")
+}else{
+
+const buffer = fs.readFileSync(filepath)
+	conn.sendMessage(id , buffer , MessageType.audio);
+
+};
+}
+if (text.includes("!lirik")){
+	const teks = text.split("!lirik")[1]
+	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
+	 	let hasil = `LIRIK DARI LAGU ${teks} ADALAH\n\n\n ${res.data.result.lirik}`
+	conn.sendMessage(id, hasil, MessageType.text)
+	})
+}
+if (text.includes("!alay")){
+	const alay = text.split("!alay")[1]
+	axios.get(`https://api.terhambar.com/bpk?kata=${alay}`).then ((res) =>
+		{ let hasil = `${res.data.text}`
+		conn.sendMessage(id, hasil, MessageType.text)
+	})
+}
 
 
 
