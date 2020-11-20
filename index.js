@@ -12,8 +12,8 @@ const menu = require("./lib/menu.js");
 const donate = require("./lib/donate.js");
 const info = require("./lib/info.js");
 //
-const BotName = 'Anda kafir bot'; // Nama Bot Whatsapp
-const instagramlu = 'https://www.instagram.com/dr.xpro_'; // Nama Instagramlu cok
+const BotName = 'Rizz'; // Nama Bot Whatsapp
+const instagramlu = 'https://www.instagram.com/moch_rizky31'; // Nama Instagramlu cok
 const whatsapplu = '083808215556'; // Nomor whatsapplu cok
 const kapanbotaktif = '24 Jam'; // Kapan bot lu aktif
 const grupch1 = '-'; // OFFICIAL GRUP LU 1
