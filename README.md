@@ -1,5 +1,5 @@
 # 🏺BOTMR02🏺
-BOT WHATSAPP TERMUX ONLY BY ARIS187 ID
+BOT WHATSAPP TERMUX ONLY BY MR02 ID
 
 ### Alat dan Bahan
 Siapin alat dan bahannya.
