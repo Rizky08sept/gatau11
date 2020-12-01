@@ -935,7 +935,7 @@ if (text.includes("®fotoanime"))
     }
  
 if (text.includes("®lirik")){
-	const teks = text.split("#lirik")[1]
+	const teks = text.split("®lirik")[1]
 	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
 	     conn.sendMessage(id, '[WAIT] Searching...❗', MessageType.text)
 	 	let hasil = `🎶lirik🎶 lagu ${teks} \n\n\n ${res.data.result.lirik}`
@@ -943,7 +943,7 @@ if (text.includes("®lirik")){
 	})
 }
 if (text.includes("®alay")){
-	const alay = text.split("#alay")[1]
+	const alay = text.split("®alay")[1]
 	axios.get(`https://api.terhambar.com/bpk?kata=${alay}`).then ((res) =>
 		{ let hasil = `${res.data.text}`
 		conn.sendMessage(id, hasil, MessageType.text)
