@@ -785,7 +785,7 @@ if (text.includes("®pokemon"))
   {
     const cheerio = require('cheerio');
     const request = require('request');
-    var nama = text.split("#nama ")[1];
+    var nama = text.split("®nama ")[1];
     var req = nama.replace(/ /g,"+");
     request.get({
         headers: {'content-type' : 'application/x-www-form-urlencoded'},
